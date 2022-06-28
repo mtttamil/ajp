@@ -1,0 +1,28 @@
+import java.net.*;
+import java.io.*;
+class exno1
+{
+public static void main(String args[])throws IOException
+{
+BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+String host;
+try
+{
+	System.out.println("Enter the host name:");
+	host=in.readLine();
+	InetAddress ia=InetAddress.getByName(host);
+	String ip=ia.getHostAddress();
+	System.out.println("ip address of host:"+ip);
+}
+catch(UnknownHostException e )
+	{
+	   System.out.println("Wrong HostName");
+	}
+}
+}
+
+
+* SAVE AS EXNO1.JAVA
+* SAVE IN JDK BIN
+* CMD - JAVAC EXNO1.JAVA - JAVA EXNO1
+* COPY PASTE HOST NAME FROM SYSTEM INFORMATION
