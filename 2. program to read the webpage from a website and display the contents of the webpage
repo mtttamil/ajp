@@ -1,0 +1,25 @@
+import java.net.*; 
+import java.io.*; 
+class readurl
+{
+
+public static void main(String a[])throws Exception
+
+{
+
+BufferedReader br1=new BufferedReader(new InputStreamReader(System.in)); 
+String filename;
+System.out.print("Enter the webpage address:");
+
+filename=br1.readLine();
+
+URL myurl=new URL(filename); 
+InputStream in=myurl.openStream();
+ BufferedReader br=new BufferedReader(new InputStreamReader(in)); String str;
+System.out.println(“The web page Content”); System.out.println(“*******************”);
+while((str=br.readLine())!=null)
+System.out.println(str);
+
+br.close();
+
+} }
