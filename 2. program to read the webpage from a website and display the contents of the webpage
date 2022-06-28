@@ -23,3 +23,16 @@ System.out.println(str);
 br.close();
 
 } }
+
+
+
+<html>
+
+<head> <Title>Sample web page</title> </head>
+
+<body bgcolor=yellow>
+
+<font size="20">This is a sample web page to be displayed using Java program </font>
+</body>
+
+</html>
