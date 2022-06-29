@@ -1,0 +1,311 @@
+Simple Property Procedure: Source Java File:
+1.   Open a note pad.
+
+2.   Write a java program that Canvas.
+
+3.   The file has a private Boolean variable called vertical.
+
+4.   Define the getVertical() and setVertical() methods to define the property using the Beaninfo class.
+5.   The program is designed in such a way that if the Boolean property vertical is true then the spectrum is displayed in vertical format else it is displayed in horizontal format.
+6.   Save the file as check.java in a folder called check.
+
+
+Setting the Simple Property of bean using Simple BeanInfo:
+
+1.   Open a note pad.
+
+2.   Write a java program that imports java.beans  package
+
+3.   Define a subclass of SimpleBeanInfo called checkBeanInfo
+
+4.  Override the getPropertyDescriptors[] and define the vertical property of the check bean.
+5.   Save the file as checkBeanInfo.java in a folder called check.
+
+
+Compiling the java files:
+
+1.   Open the Command prompt.
+
+2.   Goto the parent directory of the check folder.
+
+3.   Compile the java files as javac check\*.java
+
+Manifest File:
+
+1.   Open a note pad.
+
+2.   Write the manifest file to include the name of the Java-Bean class.
+
+3.   Name: check.check.class
+
+4.   Java-Bean:  True
+
+5.   Save the file as check.mft
+
+(Don’t forget to add one tab space and press enter)
+Creating the JAR file
+
+1.   Open the command prompt.
+
+2.   Go to the parent directory of the indexcheck folder
+
+3.   Create the jar file. (the jar file should be in the jars folder of the bean)
+
+jar cfm c:\beans\jars\spectrum.jar check\check.mft check\*.class 
+Running the program:
+
+1.   Open a command prompt.
+
+2.   Go to the directory where beanbox is present (C:\beans\beanbox)
+
+3.   Type run.
+
+4.   The bean windows opens. From the the Tool box select the check bean and drop it in the BeanBox.
+5.   Verify the Property window and see only the Verical property is displayed which can be toggled to true or false.
+Program:
+
+check.java
+package check; 
+import java.awt.*; import java.util.*;
+public class check extends Canvas
+
+{         private boolean vertical;
+
+public check()
+
+{               vertical=true;
+
+setSize(100,100);
+}
+
+public boolean getVertical()
+
+{  return vertical;
+
+}
+
+public void setVertical(boolean vertical)
+
+{                this.vertical=vertical;
+
+repaint();
+}
+
+public void paint(Graphics g)
+
+{                 Color c;
+
+float saturation=1.0f; 
+float brightness=1.0f; 
+Dimension d=getSize(); if(vertical)
+				{
+				   for(int x=0;x<d.width;x++)
+
+			{
+				float hue=(float)x/(d.width-1);
+				c=Color.getHSBColor(hue,saturation,brightness);
+
+		g.setColor(c);
+
+				g.drawLine(x,0,x,d.height-1);
+ 				       }
+				}
+else
+
+					{for(int y=0;y<d.height;y++)
+
+					{float hue=(float)y/(d.height-1);
+					c=Color.getHSBColor(hue,saturation,brightness);
+
+				g.setColor(c);
+
+					g.drawLine(0,y,d.width-1,y);
+
+	}  }  }  }
+checkBeanInfo.java 
+package check; 
+import java.beans.*;
+public class checkBeanInfo extends SimpleBeanInfo
+
+{
+private Class checkClass = check.class;
+
+public PropertyDescriptor[] getPropertyDescriptors()
+
+{ PropertyDescriptor str = null;
+
+try
+
+{         str= new PropertyDescriptor("vertical", checkClass);
+
+str.setDisplayName("Vertical:");
+
+}
+catch (IntrospectionException e) {} PropertyDescriptor[] result = {str}; return result;
+} }
+Indexed Property Procedure: Source Java File:
+1.   Open a note pad.
+
+2.   Write a java program that Canvas.
+
+3.   The file has a index property called stocks.
+
+4.   Define the access methods of the Indexed property stock public <PropertyType>[] get<PropertyName>();
+public void set<PropertyName>(<PropertyType>[] value);
+
+public <PropertyType> get<PropertyName>(int index);
+
+public void set<PropertyName>(int index, <PropertyType> value);
+
+5.   Save the file as IndexList.java in a folder called indexcheck.
+
+Setting the Property of bean using Simple BeanInfo:
+
+1.   Open a note pad.
+
+2.   Write a java program that imports java.beans package
+
+3.   Define a subclass of SimpleBeanInfo called IndexListBeanInfo
+
+4.   Override the getPropertyDescriptors[] and define the stock property of the
+
+IndexCheckcheck bean.
+
+5.   Save the file as IndexCheckBeanInfo.java in a folder called indexcheck.
+Compiling the java files:
+
+1.   Open the Command prompt.
+2.	  Goto the parent directory of the check folder.
+3.	  Compile the java files as javac indexcheck\*.java 
+
+Manifest File:
+
+1.   Open a note pad.
+
+2.   Write the manifest file to include the name of the Java-Bean class and the
+
+BeanInfo class. (Don’t forget to add one tab space and press enter)
+
+3.   Now save the file as myindex.mft
+
+Creating the JAR file
+
+1.   Open the command prompt.
+
+2.   Go to the parent directory of the indexcheck folder
+
+3.   Create the jar file. (the jar file should be in the jars folder of the bean)
+
+jar cfm c:\beans\jars\mystock.jar indexcheck\myindex.mft indexcheck         \*.class
+
+Running the program:
+
+1.   Open a command prompt.
+
+2.   Go to the directory where beanbox is present (C:\beans\beanbox)
+
+3.   Type run.
+
+4.	The bean window opens. From the Tool box select the IndexList bean and drop it in the BeanBox.
+
+Program: IndexList.java 
+package indexcheck; 
+import java.util.*; 
+import java.awt.*;
+public class IndexList extends Canvas
+
+{
+ protected Vector stocks = new Vector();
+IndexList()
+{
+String sub[]={"C&DS", "Java","C++"}; setBackground(Color.pink); setForeground(Color.blue); setSize(400,400);
+for(int i=0;i<3;i++)
+
+stocks.addElement(sub[i]);
+
+}
+ public synchronized int getStockCount()
+{return stocks.size();
+
+}
+ public synchronized String[] getStocks()
+{String[] s = new String[getStockCount()];
+
+stocks.copyInto(s);
+
+return s;
+
+}
+public synchronized void setStocks(String[] s)
+
+{
+stocks.setSize(s.length);
+for (int i = 0; i < s.length; i++)
+{ try
+{ setStocks(i, s[i]);
+
+                                   repaint();
+
+}
+catch (ArrayIndexOutOfBoundsException e){  }
+
+}}
+
+property public synchronized String getStocks(int index)throws ArrayIndexOutOfBoundsException
+{
+if (index < 0 || index >= getStockCount())
+
+{throw new ArrayIndexOutOfBoundsException();
+
+}
+String s = (String)stocks.elementAt(index); 
+return s;
+
+}
+ public synchronized void setStocks(int index, String stock) throws ArrayIndexOutOfBoundsException
+{if (index < 0 || index >= getStockCount())
+
+{throw new ArrayIndexOutOfBoundsException();
+
+}
+ stocks.setElementAt(stock, index); repaint();
+}
+public void paint(Graphics g)
+
+{
+for(int i=0;i<stocks.size();i++)
+g.drawString("Subject"+(i+1)+":"+stocks.elementAt(i),50,100*(i+1));
+
+}
+}
+IndexListBeanInfo.java package indexcheck;
+import java.beans.*;
+public class IndexListBeanInfo extends SimpleBeanInfo
+
+{
+public PropertyDescriptor[] getPropertyDescriptors()
+
+{try{
+
+PropertyDescriptor ip =new PropertyDescriptor("stocks", IndexList.class);
+
+ip.setDisplayName("Stock :"); 
+PropertyDescriptor[] pda = { ip }; 
+return pda;}
+catch (IntrospectionException e)
+
+{return null;
+
+}}}
+
+myindex.mft
+
+Name: indexcheck.IndexList.class
+
+Java-Bean: True
+
+Name: indexcheck.IndexListBeanInfo.class
+
+Java-Bean: False
+Result:The above program was executed and the output is verified
+
