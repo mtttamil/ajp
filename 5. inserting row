@@ -1,0 +1,29 @@
+import java.sql.*;
+
+class demojdbc
+
+{ public static void main(String args[])
+
+{ try {
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
+Connection   cn= DriverManager.getConnection ("Jdbc:Odbc:Mydata"); System.out.println("Database connected"); 
+Statement st=cn.createStatement();
+BufferedReader bin=new BufferedReader(new InputStreamReader(System.in)); 
+System.out.print("Enter the name and roll number of the student:"); 
+String str=bin.readLine();
+int rno=Integer.parseInt(bin.readLine());
+ResultSet rs=st.executeUpdate("insert into stu values”+str+”,”+rno+”;”); 
+st.close();
+
+cn.close();
+
+}
+catch(ClassNotFoundException e)
+
+{System.out.println(e.getMessage());}
+
+catch(SQLException e)
+
+{System.out.println(e.getMessage());}
+
+}}
