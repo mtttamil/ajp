@@ -1,0 +1,29 @@
+datetime.java
+import java.lang.*;
+import java.util.*;
+import java.applet.*;
+import java.awt.*;
+import java.text.*;
+public class datetime extends Applet
+{
+String strDate,strTime;
+public void init()
+{
+Date date=new Date();
+DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+strDate=dateFormat.format(date);
+}
+public void paint(Graphics G)
+{
+G.drawString("Today's Date:"+strDate,20,20);
+}
+}
+
+
+datetime.html
+<html>
+<body>
+<applet code="datetime.class" width="300" height="300">
+</applet>
+</body>
+</html>
