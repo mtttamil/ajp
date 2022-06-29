@@ -1,0 +1,104 @@
+Program: Cookie.html
+<HTML>
+
+<HEAD>
+
+<TITLE>Cookies Example</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<CENTER>
+
+<BODY bgcolor="white">
+
+<H3>Cookies Example</H3>
+
+<P>
+
+Create a cookie to send to your browser<BR>
+
+<H1> Login Form</H1></CENTER>
+
+<FORM action="\set" METHOD="post">
+
+<TABLE border=2 align=center>
+
+<TR>
+
+<TD>User Name:  </TD>
+
+<TD><input type=text length=20 name=user></TD>
+
+</TR>
+<TR>
+
+</TR>
+
+<TR>
+<TD>Password: </TD>
+
+<Td> <input type=password length=20 name=info></TD>
+<TD      align=center      colspan=2><input      type=submit      value="submit form"></TD>
+</TR>
+
+</TABLE>
+
+</FORM>
+
+</BODY>
+
+</HTML>
+
+
+set.java
+
+import java.io.*;
+import javax.servlet.http.*;
+
+import javax.servlet.ServletException;
+
+public class set extends HttpServlet
+
+{
+
+public  void  doPost(HttpServletRequest  request,  HttpServletResponse response)throws ServletException, IOException
+{response.setContentType("text/html"); PrintWriter pw = response.getWriter();
+ String name = request.getParameter("user"); String value=request.getParameter("info"); Cookie cookie = new Cookie(name,value); response.addCookie(cookie);
+pw.println("<B>MyCookie has been set the user information ");
+pw.println("<form action=\"" + response.encodeURL("/getCookie")+ "\" method=\"post\">"+
+"<input type=\"submit\""+
+
+"value=\"Display cookie value\">" + "</form>");
+}}
+
+
+getCookie.java
+
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+
+public class getCookie extends HttpServlet
+
+{public  void  doPost(HttpServletRequest  request,  HttpServletResponse response)throws ServletException, IOException
+{
+Cookie[] cookies = request.getCookies(); response.setContentType("text/html"); PrintWriter pw = response.getWriter(); pw.println("<B><table border='2'>");
+pw.print("<tr><td><b>username</b></td><td><b>Secret
+
+Code</b></td></tr>");
+
+for (int i = 0; i < cookies.length; i++)
+
+{Cookie c=cookies[i];
+
+String name = c.getName();
+ String value = c.getValue();
+ pw.print("<tr><td>" + name + "</td><td>" + value + "</td></tr>");
+}pw.print("</table>");
+
+}}
