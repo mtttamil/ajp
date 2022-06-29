@@ -1,0 +1,23 @@
+multiple.java
+import java.lang.*;
+import java.io.*;
+public class multiple
+{
+public static void ma+in(String a[]) throws IOException
+{
+String ans[][]={{"1.American Language of Unity","2.ALL Uppercase","3.Alpha Lamda Unipha","4.Arithmetic Logic Unit","5.Arthmetic Logic Unit"},{"1.c","2.HTML","3.Oracle","4.Photoshope","1.c"},
+{"1.8","2.12","3.16","4.32","1.8"},{"1.Photoshop","2.Coreldraw","3.Maya","4.Blender","2.Coredraw"}};
+String Que[]={"1.Expand ALU","2.Which one of the following is a Programming language?","3.How many bits from one byte?","4.Which Designing software does not have pixelation problem?"};
+int c,i,j;
+BufferedReader bin=new BufferedReader(new InputStreamReader(System.in));
+for(i=0;i<4;i++)
+{System.out.println(Que[i]+"\n");
+for(j=0;j<4;j++)
+System.out.println(ans[i][j]);
+System.out.println("\n\nEnter the correct anser 1/2/3/4");
+c=Integer.parseInt(bin.readLine());
+if(ans[i][--c].equals(ans[i][4]))
+System.out.println("Your answer is corrrect");
+else
+System.out.println("\nWrong! Correct answer is"+ans[i][4]);
+}}}
