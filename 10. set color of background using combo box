@@ -1,0 +1,41 @@
+background.html
+<html>
+<body>
+<applet code="background.class" width="300" height="300">
+</applet>
+</body>
+</html>
+
+background.java
+import java.lang.*;
+import java.applet.*;
+import java.awt.*;
+public class background extends Applet
+{
+Choice c;
+String cr;
+public void init()
+{
+c=new Choice();
+add(c);
+c.add("red");
+c.add("green");
+c.add("blue");
+c.add("orange");
+c.add("black");
+}
+public void paint(Graphics g)
+{
+cr = c.getSelectedItem();
+if(cr.equals("red"))
+setBackground(Color.red);
+if(cr.equals("blue"))
+setBackground(Color.blue);
+if(cr.equals("green"))
+setBackground(Color.green);
+if(cr.equals("orange"))
+setBackground(Color.orange);
+if(cr.equals("black"))
+setBackground(Color.black);
+repaint();
+}} 
