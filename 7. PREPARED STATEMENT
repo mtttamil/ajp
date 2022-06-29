@@ -1,0 +1,46 @@
+Program:DemoPrepare.java
+
+import java.sql.*;
+ import java.io.*; 
+class DemoPrepare
+{
+public static void main(String args[])throws IOException
+
+{try
+{ Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+
+Connection   cn=DriverManager.getConnection("Jdbc:Odbc:Mydata");
+System.out.println("Database connected"); 
+BufferedReader bin=new BufferedReader(new InputStreamReader(System.in));
+ System.out.print("Enter the roll number of the student:"); 
+int rno=Integer.parseInt(bin.readLine()); 
+System.out.print("Enter the new name:");
+String str=bin.readLine();
+String query="Update stu set name=? where regno=?"; 
+PreparedStatement pst=cn.prepareStatement(query);
+ pst.clearParameters();
+pst.setString(1,str);
+
+pst.setInt(2,rno);
+
+int flag=pst.executeUpdate();
+
+if(flag>0)
+
+System.out.println("Record updated");
+           else 
+System.out.println("No record updated");
+pst.close();
+
+cn.close();
+
+}
+
+catch(ClassNotFoundException e)
+
+{System.out.println(e.getMessage());}
+catch(SQLException e)
+
+{System.out.println(e.getMessage());}
+
+}}
